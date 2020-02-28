@@ -15,31 +15,26 @@ import javax.swing.JPanel;
 
 public class JACK_IN_DA_BOX_ implements ActionListener {
 	JFrame frame = new JFrame();
-	JButton panel = new JButton();
+	JButton button = new JButton();
+	JPanel panel = new JPanel();
 	JLabel label = new JLabel();
 
 	private void showPicture(String fileName) {
-		label.setText("SUPRISE");
-		panel.add(label);
+		label = createLabelImage(fileName);
+		button.setText("SUPRISE");
+		//panel.add(label);
+		panel.add(button);
 		frame.add(panel);
-		panel.addActionListener(this);
+		button.addActionListener(this);
 	
-		try {
-			JLabel imageLabel = createLabelImage(fileName);
-			JFrame frame = new JFrame();
+		
+		frame.setVisible(true);
+			
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			frame.add(imageLabel);
-			frame.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+			//frame.add(imageLabel);
+			
 
-		try {
-			AudioClip sound = JApplet.newAudioClip(getClass().getResource("homer-woohoo.wav"));
-			sound.play();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		
 		frame.pack();
 	}
 
@@ -64,10 +59,24 @@ public class JACK_IN_DA_BOX_ implements ActionListener {
 		
 		showPicture("jackInTheBox.png");
 	}
-
+int num = 0;
 	@Override
 	public void actionPerformed(ActionEvent e) {
-	
+		num ++;
+		if (num==(5)) {
+			
+			
+		try {
+			AudioClip sound = JApplet.newAudioClip(getClass().getResource("homer-woohoo.wav"));
+			sound.play();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		panel.add(label);
+		frame.add(panel);
+		frame.pack();
+		num = 0;
+		}
 		
 	}
 
